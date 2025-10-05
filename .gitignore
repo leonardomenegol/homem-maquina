@@ -1,0 +1,68 @@
+# --- Node / Vite / React TypeScript Standard ---
+# Dependencies
+yarn.lock
+pnpm-lock.yaml
+/node_modules/
+
+# Build output
+/dist/
+/build/
+/.vite-cache/
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Env / Secrets
+.env
+.env.*.local
+!.env.example
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage / Tests
+coverage/
+*.lcov
+
+# Temporary
+.tmp/
+.temp/
+.sass-cache/
+.cache/
+.parcel-cache/
+
+# OS
+Icon?
+
+# Optional: local storage mocks or generated data
+/.data/
+
+# Storybook (se no futuro eu usar)
+storybook-static/
+
+# Cypress / Playwright (se no futuro eu usar)
+/cypress/screenshots/
+/cypress/videos/
+/test-results/
+
+# ESLint cache
+.eslintcache
+
+# npm
+package-lock.json
+
+# --- End ---
