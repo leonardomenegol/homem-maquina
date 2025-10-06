@@ -1386,4 +1386,106 @@ html, body { overscroll-behavior-y: contain; }
 /* O menu lateral agora funciona como uma página deslizante
    com fundo sólido e estrutura bem definida */
 
+/* ==================================================
+   MOBILE APPOINTMENTS - RESPONSIVIDADE
+   ================================================== */
 
+/* Versão desktop: mostrar tabela, esconder cards mobile */
+.mobile-appointments {
+  display: none;
+}
+
+/* Versão mobile: esconder tabela, mostrar cards mobile */
+@media (max-width: 820px) {
+  .hide-mobile {
+    display: none !important;
+  }
+  
+  .mobile-appointments {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--space-3) !important;
+    margin-top: var(--space-4) !important;
+  }
+  
+  .mobile-appointment-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: all var(--transition-fast);
+  }
+  
+  .mobile-appointment-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+  }
+  
+  .mobile-appointment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  
+  .mobile-appointment-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.3;
+    flex: 1;
+  }
+  
+  .mobile-appointment-meta {
+    font-size: 0.8rem;
+    letter-spacing: 0.025em;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+    margin: var(--space-2) 0;
+    font-weight: 500;
+  }
+  
+  .mobile-appointment-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-top: var(--space-1);
+  }
+  
+  .mobile-appointment-actions .btn {
+    font-size: 0.8rem;
+    padding: var(--space-2) var(--space-3);
+    flex: 1;
+    min-width: 100px;
+  }
+  
+  /* Alto contraste para mobile appointments */
+  body.high-contrast .mobile-appointment-card {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+  }
+  
+  body.high-contrast .mobile-appointment-card:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface-elevated);
+  }
+  
+  body.high-contrast .mobile-appointment-title {
+    color: var(--color-text);
+  }
+  
+  body.high-contrast .mobile-appointment-meta {
+    color: var(--color-text-secondary);
+    border-color: var(--color-border);
+  }
+}

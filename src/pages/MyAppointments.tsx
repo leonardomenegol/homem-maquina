@@ -75,32 +75,41 @@ export const MyAppointmentsPage: React.FC = () => {
           </tbody>
         </table>
       </div>
-      <div className="mobile-appointments" style={{ display:'none', marginTop:16, gap:12 }}>
+      <div className="mobile-appointments">
         {filtered.map(m => {
           const svc = services.find(s => s.id === m.serviceId);
           return (
-            <div key={m.id} className="card" style={{ display:'flex', flexDirection:'column', gap:4 }}>
-              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
-                <strong style={{ fontSize:'.9rem' }}>{svc?.name}</strong>
+            <div key={m.id} className="mobile-appointment-card">
+              <div className="mobile-appointment-header">
+                <div className="mobile-appointment-title">{svc?.name}</div>
                 <StatusBadge status={m.status} />
               </div>
-              <div style={{ fontSize:'.65rem', letterSpacing:'.5px', color:'var(--color-text-secondary)', display:'flex', gap:12, flexWrap:'wrap' }}>
-                <span><Icon name="clock" size={12} /> {formatDateTime(m.dateTime)}</span>
+              <div className="mobile-appointment-meta">
+                <Icon name="clock" size={12} /> {formatDateTime(m.dateTime)}
               </div>
-              <div style={{ display:'flex', gap:8, flexWrap:'wrap', marginTop:4 }}>
-                {m.status !== 'cancelled' && <Button variant="outline" onClick={() => startEdit(m.id)}><Icon name="edit" /> Editar</Button>}
-                {m.status !== 'cancelled' && <Button variant="danger" onClick={() => cancel(m.id)}><Icon name="trash" /> Cancelar</Button>}
+              <div className="mobile-appointment-actions">
+                {m.status !== 'cancelled' && (
+                  <Button variant="outline" onClick={() => startEdit(m.id)}>
+                    <Icon name="edit" /> Editar
+                  </Button>
+                )}
+                {m.status !== 'cancelled' && (
+                  <Button variant="danger" onClick={() => cancel(m.id)}>
+                    <Icon name="trash" /> Cancelar
+                  </Button>
+                )}
               </div>
             </div>
           );
         })}
-        {filtered.length === 0 && mine.length > 0 && <div className="card" style={{ fontSize:'.8rem' }}>Nenhum resultado para filtro.</div>}
+        {filtered.length === 0 && mine.length > 0 && (
+          <div className="mobile-appointment-card">
+            <div style={{ fontSize: '0.8rem', textAlign: 'center', color: 'var(--color-text-secondary)' }}>
+              Nenhum resultado para o filtro aplicado.
+            </div>
+          </div>
+        )}
       </div>
-      <style>{`
-        @media (max-width:820px){
-          .mobile-appointments{display:flex; flex-direction:column;}
-        }
-      `}</style>
       <Modal open={!!editing} onClose={() => setEditing(null)} title="Editar Agendamento" actions={<>
   <Button variant="outline" onClick={() => setEditing(null)}><Icon name="close" /> Cancelar</Button>
   <Button onClick={save} disabled={!form.date || !form.time}><Icon name="save" /> Salvar</Button>
